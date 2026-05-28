@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Photo Gallery</title>
+    <style>
+      body {
+        margin: 2%;
+        border: 1px solid black;
+        background-color: #b3b3b3;
+        font-family: Arial, sans-serif;
+      }
+      #image {
+        line-height: 500px;
+        width: 575px;
+        height: 500px;
+        border: 5px solid black;
+        margin: 0 auto;
+        background-color: #8e68ff;
+        background-image: url("");
+        background-repeat: no-repeat;
+        color: #ffffff;
+        text-align: center;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 25px;
+        font-size: 150%;
+      }
+      .preview {
+        width: 15%;
+        margin: 0 1%;
+        border: 5px solid black;
+        cursor: pointer;
+      }
+      /* Căn giữa cụm ảnh */
+      .image-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="image">Hover over an image below to display here.</div>
+
+    <div class="image-container">
+      <img
+        class="preview"
+        alt="Chó con đáng yêu"
+        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/389177/bacon.jpg"
+        onmouseover="upDate(this)"
+        onmouseout="undo()"
+      />
+
+      <img
+        class="preview"
+        alt="Chú chó dạo phố"
+        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/389177/bacon2.JPG"
+        onmouseover="upDate(this)"
+        onmouseout="undo()"
+      />
+
+      <img
+        class="preview"
+        alt="Cún con tắm nắng"
+        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/389177/bacon3.jpg"
+        onmouseover="upDate(this)"
+        onmouseout="undo()"
+      />
+    </div>
+
+    <script>
+      function upDate(previewPic) {
+        // Thay đổi nội dung chữ thành thuộc tính 'alt' của ảnh đang được di chuột qua
+        document.getElementById("image").innerHTML = previewPic.alt;
+
+        // Thay đổi ảnh nền thành thuộc tính 'src' của ảnh đang được di chuột qua
+        document.getElementById("image").style.backgroundImage =
+          "url('" + previewPic.src + "')";
+      }
+
+      function undo() {
+        // Đưa ảnh nền về trạng thái trống ban đầu
+        document.getElementById("image").style.backgroundImage = "url('')";
+
+        // Đưa dòng chữ về lại mặc định
+        document.getElementById("image").innerHTML =
+          "Hover over an image below to display here.";
+      }
+    </script>
+  </body>
+</html>
